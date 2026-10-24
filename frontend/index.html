@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLB.Manager — Hệ thống Quản lý CLB Sinh viên + AI</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- ========== LOGIN PAGE (phong cách MONA.Media) ========== -->
+    <div id="login-page" class="login-page">
+        <div class="mosaic" aria-hidden="true">
+            <div class="mosaic-grid">
+                <span></span><span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+            <div class="mosaic-overlay"></div>
+        </div>
+
+        <header class="topbar topbar--ghost">
+            <div class="topbar-inner">
+                <div class="brand">
+                    <span class="brand-logo">🎓</span>
+                    <span class="brand-text">
+                        <strong>CLB<em>.</em>Manager</strong>
+                        <small class="brand-tagline">Hệ thống quản lý CLB &amp; Trợ lý AI</small>
+                    </span>
+                </div>
+                <span class="demo-chip">✨ Phiên bản Demo</span>
+            </div>
+        </header>
+
+        <main class="login-hero">
+            <div class="hero-badge">NỀN TẢNG QUẢN LÝ CLB TẠI 🎓 <b>CLB.Manager</b> ✨</div>
+            <h1 class="hero-title">
+                Hệ thống quản lý CLB <span class="accent-orange">chuyên nghiệp</span><br>
+                đa nhiệm cùng <span class="accent-blue">Trợ lý AI</span>
+            </h1>
+            <p class="hero-sub">
+                Bạn có thể quản lý <strong>thành viên, hoạt động, điểm danh &amp; nhiệm vụ</strong>
+                ngay hôm nay mà không cần chờ đợi!
+            </p>
+
+            <div class="login-card">
+                <div class="login-tabs">
+                    <button class="login-tab active" data-tab="login">🔐 Đăng nhập</button>
+                    <button class="login-tab" data-tab="register">🚀 Tạo tài khoản</button>
+                </div>
+
+                <form id="login-form" class="auth-form">
+                    <div class="form-group">
+                        <label>Tên đăng nhập</label>
+                        <input type="text" id="login-username" placeholder="Nhập tên đăng nhập" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Mật khẩu</label>
+                        <input type="password" id="login-password" placeholder="Nhập mật khẩu" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Đăng nhập</button>
+                </form>
+
+                <form id="register-form" class="auth-form" style="display:none">
+                    <div class="form-group">
+                        <label>Tên đăng nhập <span class="req">*</span></label>
+                        <input type="text" id="reg-username" placeholder="Chọn tên đăng nhập" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email (tùy chọn)</label>
+                        <input type="email" id="reg-email" placeholder="email@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Mật khẩu <span class="req">*</span></label>
+                        <input type="password" id="reg-password" placeholder="Nhập mật khẩu" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Họ và tên <span class="req">*</span></label>
+                        <input type="text" id="reg-fullname" placeholder="VD: Nguyễn Văn An" required>
+                    </div>
+                    <div class="form-row-2">
+                        <div class="form-group">
+                            <label>Ngày sinh <span class="req">*</span></label>
+                            <input type="date" id="reg-dob" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Giới tính <span class="req">*</span></label>
+                            <select id="reg-gender" required>
+                                <option value="">-- Chọn --</option>
+                                <option value="Nam">Nam</option>
+                                <option value="Nữ">Nữ</option>
+                                <option value="Khác">Khác</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row-2">
+                        <div class="form-group">
+                            <label>Lớp <span class="req">*</span></label>
+                            <input type="text" id="reg-class" placeholder="VD: CNTT-K15A" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Khoa <span class="req">*</span></label>
+                            <input type="text" id="reg-department" placeholder="VD: Công nghệ thông tin" required>
+                        </div>
+                    </div>
+                    <!-- Vai trò đã bỏ khỏi biểu mẫu: mọi tài khoản mới mặc định là Thành viên -->
+                    <div class="role-note">
+                        👤 Tài khoản mới mặc định là <b>Thành viên</b>. Vai trò Chủ nhiệm /
+                        Trưởng ban do Ban quản trị CLB cấp.
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Tạo tài khoản</button>
+                </form>
+
+                <!-- Đăng nhập / đăng ký bằng mạng xã hội -->
+                <div class="social-auth">
+                    <div class="social-divider"><span>hoặc tiếp tục với</span></div>
+                    <div class="social-buttons">
+                        <button type="button" class="social-btn social-google" data-provider="google">
+                            <span class="social-icon">🔍</span> Google
+                        </button>
+                        <button type="button" class="social-btn social-facebook" data-provider="facebook">
+                            <span class="social-icon">📘</span> Facebook
+                        </button>
+                        <button type="button" class="social-btn social-discord" data-provider="discord">
+                            <span class="social-icon">🎮</span> Discord
+                        </button>
+                    </div>
+                    <p class="social-hint" id="social-hint"></p>
+                </div>
+
+                <div id="login-msg" class="form-msg"></div>
+                <div class="login-hint">
+                    <p>Tài khoản mẫu — mật khẩu <b>123456</b>:</p>
+                    <p class="hint-accounts">
+                        <span>👑 chunhiem</span>
+                        <span>🌟 truongbantt</span>
+                        <span>👤 thanhvien</span>
+                    </p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- ========== MAIN APP ========== -->
+    <div id="app" class="app" style="display:none">
+        <!-- Top navigation (thay cho sidebar cũ) -->
+        <header class="topbar">
+            <div class="topbar-inner">
+                <div class="brand">
+                    <span class="brand-logo">🎓</span>
+                    <span class="brand-text">
+                        <strong>CLB<em>.</em>Manager</strong>
+                        <small class="brand-tagline">Quản lý CLB &amp; Trợ lý AI</small>
+                    </span>
+                </div>
+
+                <nav class="main-nav">
+                    <button class="nav-item active" data-page="dashboard"><span class="nav-icon" style="--ic-bg:#dbeafe">📊</span><span class="nav-label">Tổng quan</span></button>
+                    <button class="nav-item" data-page="my-activities" data-roles="thanh_vien"><span class="nav-icon" style="--ic-bg:#ffe4e6">🎯</span><span class="nav-label">Hoạt động của tôi</span></button>
+                    <button class="nav-item" data-page="members" data-roles="chu_nhiem truong_ban"><span class="nav-icon" style="--ic-bg:#dcfce7">👥</span><span class="nav-label">Thành viên</span></button>
+                    <button class="nav-item" data-page="committees" data-roles="chu_nhiem truong_ban"><span class="nav-icon" style="--ic-bg:#ede9fe">🏛️</span><span class="nav-label">Ban chuyên môn</span></button>
+                    <button class="nav-item" data-page="activities"><span class="nav-icon" style="--ic-bg:#ffedd5">📅</span><span class="nav-label">Hoạt động</span></button>
+                    <button class="nav-item" data-page="attendance" data-roles="chu_nhiem truong_ban"><span class="nav-icon" style="--ic-bg:#fce7f3">📋</span><span class="nav-label">Điểm danh</span></button>
+                    <button class="nav-item" data-page="tasks" data-roles="chu_nhiem truong_ban"><span class="nav-icon" style="--ic-bg:#ccfbf1">✅</span><span class="nav-label">Nhiệm vụ</span></button>
+                    <button class="nav-item" data-page="notifications"><span class="nav-icon" style="--ic-bg:#fef3c7">🔔</span><span class="nav-label">Thông báo</span></button>
+                    <button class="nav-item" data-page="ai" data-roles="chu_nhiem truong_ban"><span class="nav-icon" style="--ic-bg:#e0e7ff">🤖</span><span class="nav-label">Trợ lý AI</span></button>
+                    <button class="nav-item" data-page="stats" data-roles="chu_nhiem truong_ban"><span class="nav-icon" style="--ic-bg:#cffafe">📈</span><span class="nav-label">Thống kê</span></button>
+                </nav>
+
+                <div class="topbar-actions">
+                    <div class="user-info">
+                        <div class="user-avatar">{{initials}}</div>
+                        <div class="user-meta">
+                            <div class="user-name" id="current-username">-</div>
+                            <div class="user-role" id="current-role">-</div>
+                        </div>
+                    </div>
+                    <button class="btn-logout" id="btn-logout">Đăng xuất</button>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <!-- Dashboard -->
+            <section id="page-dashboard" class="page active">
+                <div class="hero">
+                    <div class="hero-badge">🎓 HỆ THỐNG QUẢN LÝ CLB ✨</div>
+                    <h1 class="hero-title">
+                        Chào mừng <span class="accent-orange" id="hero-username">bạn</span> trở lại!<br>
+                        Cùng <span class="accent-blue">bứt phá</span> nào 🚀
+                    </h1>
+                    <p class="hero-sub" id="hero-sub">Thành viên, hoạt động, điểm danh, nhiệm vụ &amp; thống kê — tất cả tại một nơi duy nhất.</p>
+                    <div class="hero-actions">
+                        <button class="btn btn-orange" onclick="navigateTo('activities')">📅 Xem hoạt động</button>
+                        <button class="btn btn-white" onclick="openChatWidget()">🤖 Hỏi Trợ lý AI</button>
+                    </div>
+                </div>
+
+                <!-- Khu vực dành cho Thành viên: hoạt động sắp diễn ra -->
+                <div id="member-dashboard" style="display:none">
+                    <div class="panel">
+                        <h3>🎯 Hoạt động sắp diễn ra dành cho bạn</h3>
+                        <div id="member-upcoming-list" class="list-container"></div>
+                    </div>
+                    <div class="panel">
+                        <h3>📋 Điểm danh của tôi</h3>
+                        <div id="member-attendance-list" class="list-container"></div>
+                    </div>
+                </div>
+
+                <h2>📊 Tổng quan</h2>
+                <div class="stat-cards">
+                    <div class="stat-card">
+                        <div class="stat-value" id="stat-members">-</div>
+                        <div class="stat-label">Thành viên</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="stat-committees">-</div>
+                        <div class="stat-label">Ban chuyên môn</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="stat-activities">-</div>
+                        <div class="stat-label">Hoạt động</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="stat-tasks">-</div>
+                        <div class="stat-label">Nhiệm vụ</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="stat-tasks-done">-</div>
+                        <div class="stat-label">Nhiệm vụ hoàn thành</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="stat-attendance">-</div>
+                        <div class="stat-label">Lượt điểm danh</div>
+                    </div>
+                </div>
+
+                <div class="panel" data-roles="chu_nhiem truong_ban">
+                    <h3>🏆 Thành viên tích cực nhất</h3>
+                    <div id="top-members-list" class="list-container"></div>
+                </div>
+            </section>
+
+            <!-- Hoạt động của tôi (dành cho Thành viên) -->
+            <section id="page-my-activities" class="page" data-roles="thanh_vien">
+                <div class="page-header">
+                    <h2>🎯 Hoạt động của tôi</h2>
+                </div>
+                <div class="panel">
+                    <div class="panel-header">
+                        <h3>🤖 AI gợi ý hoạt động phù hợp</h3>
+                        <button class="btn btn-primary btn-sm" id="btn-ai-recommendations">Tìm hoạt động</button>
+                    </div>
+                    <p class="form-hint">Gợi ý dựa trên kỹ năng và lịch rảnh trong hồ sơ của bạn.</p>
+                    <div id="ai-recommendations-list" class="list-container"></div>
+                </div>
+                <div class="panel">
+                    <h3>📌 Đã đăng ký tham gia</h3>
+                    <div id="my-registrations-list" class="list-container"></div>
+                </div>
+                <div class="panel">
+                    <h3>✅ Lịch sử điểm danh của tôi</h3>
+                    <div id="my-attendance-list" class="list-container"></div>
+                </div>
+            </section>
+
+            <!-- Members -->
+            <section id="page-members" class="page" data-roles="chu_nhiem truong_ban">
+                <div class="page-header">
+                    <h2>👥 Quản lý thành viên</h2>
+                    <button class="btn btn-primary" id="btn-add-member" data-roles="chu_nhiem">+ Thêm thành viên</button>
+                </div>
+                <div class="filter-bar">
+                    <input type="text" id="member-search" placeholder="🔍 Tìm theo tên hoặc MSSV...">
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Họ tên</th>
+                                <th>Ngày sinh</th>
+                                <th>Giới tính</th>
+                                <th>Lớp</th>
+                                <th>Khoa</th>
+                                <th>Ngày tham gia</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody id="members-table-body"></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Committees -->
+            <section id="page-committees" class="page" data-roles="chu_nhiem truong_ban">
+                <div class="page-header">
+                    <h2>🏛️ Ban chuyên môn</h2>
+                    <button class="btn btn-primary" id="btn-add-committee" data-roles="chu_nhiem">+ Thêm ban</button>
+                </div>
+                <div id="committees-grid" class="cards-grid"></div>
+            </section>
+
+            <!-- Activities -->
+            <section id="page-activities" class="page">
+                <div class="page-header">
+                    <h2>📅 Hoạt động &amp; Sự kiện</h2>
+                    <button class="btn btn-primary" id="btn-add-activity" data-roles="chu_nhiem truong_ban">+ Tạo hoạt động mới</button>
+                </div>
+                <div class="filter-bar">
+                    <select id="activity-filter">
+                        <option value="">Tất cả hoạt động</option>
+                        <option value="upcoming">Sắp diễn ra</option>
+                        <option value="today">Hôm nay</option>
+                        <option value="mine">Tôi đã đăng ký</option>
+                    </select>
+                </div>
+                <div id="activities-list" class="list-container"></div>
+            </section>
+
+            <!-- Attendance (quản lý — chỉ Chủ nhiệm / Trưởng ban) -->
+            <section id="page-attendance" class="page" data-roles="chu_nhiem truong_ban">
+                <div class="page-header">
+                    <h2>📋 Điểm danh hoạt động</h2>
+                    <button class="btn btn-outline" id="btn-export-attendance">⬇️ Xuất báo cáo CSV</button>
+                </div>
+                <div class="filter-bar">
+                    <select id="attendance-activity-select">
+                        <option value="">-- Chọn hoạt động --</option>
+                    </select>
+                    <button class="btn btn-primary" id="btn-load-attendance">Tải điểm danh</button>
+                </div>
+                <div class="panel">
+                    <div class="page-header">
+                        <h3>🕒 Duyệt minh chứng điểm danh</h3>
+                        <button class="btn btn-outline btn-sm" id="btn-refresh-pending">Làm mới</button>
+                    </div>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Hoạt động</th>
+                                    <th>Thành viên</th>
+                                    <th>Lớp</th>
+                                    <th>Khoa</th>
+                                    <th>Thời gian gửi</th>
+                                    <th>Ảnh minh chứng</th>
+                                    <th>Thao tác</th>
+                                </tr>
+                            </thead>
+                            <tbody id="pending-attendance-body">
+                                <tr><td colspan="7" class="empty-state">Đang tải lượt chờ duyệt…</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="panel" id="attendance-summary-panel" style="display:none">
+                    <div id="attendance-summary" class="card-meta"></div>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Thành viên</th>
+                                <th>MSSV</th>
+                                <th>Trạng thái</th>
+                                <th>Phản hồi</th>
+                                <th>Thời gian điểm danh</th>
+                            </tr>
+                        </thead>
+                        <tbody id="attendance-table-body"></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Tasks -->
+            <section id="page-tasks" class="page" data-roles="chu_nhiem truong_ban">
+                <div class="page-header">
+                    <h2>✅ Quản lý nhiệm vụ</h2>
+                    <button class="btn btn-primary" id="btn-add-task" data-roles="chu_nhiem truong_ban">+ Thêm nhiệm vụ</button>
+                </div>
+                <div class="filter-bar">
+                    <select id="task-status-filter">
+                        <option value="">Tất cả trạng thái</option>
+                        <option value="todo">Cần làm</option>
+                        <option value="in_progress">Đang thực hiện</option>
+                        <option value="done">Hoàn thành</option>
+                    </select>
+                </div>
+                <div id="tasks-list" class="list-container"></div>
+            </section>
+
+            <!-- Notifications -->
+            <section id="page-notifications" class="page">
+                <div class="page-header">
+                    <h2>🔔 Thông báo nội bộ</h2>
+                </div>
+                <div id="notifications-list" class="list-container"></div>
+            </section>
+
+            <!-- AI Assistant -->
+            <section id="page-ai" class="page" data-roles="chu_nhiem truong_ban">
+                <h2>🤖 Trợ lý AI (công cụ quản lý)</h2>
+
+                <div class="ai-cards">
+                    <div class="ai-card">
+                        <h3>📢 Sinh thông báo hoạt động</h3>
+                        <p>AI tạo thông báo từ dữ liệu hoạt động</p>
+                        <div class="form-group">
+                            <label>Chọn hoạt động</label>
+                            <select id="ai-notification-activity"></select>
+                        </div>
+                        <button class="btn btn-primary" id="btn-ai-notification">🤖 Sinh thông báo</button>
+                    </div>
+
+                    <div class="ai-card">
+                        <h3>📋 Tóm tắt hoạt động</h3>
+                        <p>Chỉ khả dụng sau khi hoạt động kết thúc; AI tổng hợp số liệu, ghi chú và phản hồi.</p>
+                        <div class="form-group">
+                            <label>Chọn hoạt động</label>
+                            <select id="ai-summary-activity"></select>
+                        </div>
+                        <button class="btn btn-primary" id="btn-ai-summary">🤖 Tạo tóm tắt</button>
+                    </div>
+
+                </div>
+
+                <div class="panel" id="ai-result-panel" style="display:none">
+                    <h3>✨ Kết quả AI</h3>
+                    <div id="ai-result-content" class="ai-result"></div>
+                </div>
+            </section>
+
+            <!-- Statistics -->
+            <section id="page-stats" class="page" data-roles="chu_nhiem truong_ban">
+                <h2>📈 Thống kê &amp; Báo cáo</h2>
+                <div class="stat-cards">
+                    <div class="stat-card">
+                        <div class="stat-value" id="stats-total-members">-</div>
+                        <div class="stat-label">Tổng thành viên</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="stats-total-activities">-</div>
+                        <div class="stat-label">Tổng hoạt động</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="stats-total-attendance">-</div>
+                        <div class="stat-label">Lượt tham gia</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="stats-task-completion">0%</div>
+                        <div class="stat-label">Hoàn thành nhiệm vụ</div>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <h3>📅 Thống kê hoạt động</h3>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Hoạt động</th>
+                                    <th>Ngày</th>
+                                    <th>Số lượng điểm danh</th>
+                                    <th>Tỷ lệ tham gia</th>
+                                </tr>
+                            </thead>
+                            <tbody id="stats-activities-body"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <h3>👥 Phân bố thành viên theo ban</h3>
+                    <div id="committee-stats-list" class="list-container"></div>
+                </div>
+            </section>
+        </main>
+
+        <!-- ========== AI CHATBOT WIDGET (floating) ========== -->
+        <div class="chat-widget">
+            <div class="chat-bubble" id="chat-bubble" onclick="openChatWidget()">
+                <strong>🤖 Trợ lý AI CLB</strong>
+                Hỏi mình về hoạt động, lịch diễn ra, điểm danh của bạn nhé!
+            </div>
+            <button class="chat-fab" id="chat-fab" onclick="toggleChatWidget()" title="Trợ lý AI">🤖</button>
+
+            <div class="chat-panel" id="chat-panel" style="display:none">
+                <div class="chat-panel-header">
+                    <div class="chat-panel-title">
+                        <span class="chat-avatar">🤖</span>
+                        <div>
+                            <strong>Trợ lý AI CLB</strong>
+                            <small id="chat-provider">Đang kết nối…</small>
+                        </div>
+                    </div>
+                    <button class="chat-panel-close" onclick="toggleChatWidget(false)" title="Đóng">✕</button>
+                </div>
+
+                <div class="chat-panel-body" id="chat-messages">
+                    <div class="chat-msg chat-msg-bot">
+                        <div class="chat-bubble-msg">
+                            Xin chào 👋 Mình là trợ lý AI của CLB. Mình trả lời dựa trên
+                            <b>dữ liệu hoạt động thật</b> trong hệ thống.<br>
+                            Bạn thử hỏi mình nhé!
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chat-suggestions" id="chat-suggestions"></div>
+
+                <form class="chat-panel-footer" id="chat-form">
+                    <input type="text" id="chat-input" placeholder="Nhập câu hỏi…" autocomplete="off">
+                    <button type="submit" class="chat-send" id="chat-send" title="Gửi">➤</button>
+                </form>
+            </div>
+            </div>
+    </div>
+
+    <!-- ========== MODAL ========== -->
+    <div id="modal-overlay" class="modal-overlay" style="display:none">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 id="modal-title">Form</h3>
+                <button class="modal-close" id="modal-close">✕</button>
+            </div>
+            <div class="modal-body" id="modal-body"></div>
+        </div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
+    <script src="js/api.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

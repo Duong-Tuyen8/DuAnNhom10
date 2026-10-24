@@ -1,0 +1,16 @@
+# Thư viện node / dependencies
+node_modules/
+__pycache__/
+*.pyc
+
+# Tệp cấu hình bảo mật / môi trường
+.env
+.env.local
+
+# Thư mục build
+dist/
+build/
+
+# Tệp hệ thống
+.DS_Store
+.vscode/

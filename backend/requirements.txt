@@ -1,0 +1,11 @@
+# Compatible with modern Python (3.10+ incl. 3.14). Versions left flexible so
+# package managers can resolve wheels for the active interpreter.
+fastapi>=0.115
+uvicorn[standard]>=0.34
+sqlalchemy>=2.0.36
+pydantic>=2.10
+pyjwt>=2.10
+bcrypt>=4.0
+python-multipart>=0.0.20
+httpx>=0.28
+pytest>=8.3
