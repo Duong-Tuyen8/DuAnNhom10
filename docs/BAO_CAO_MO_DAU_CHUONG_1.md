@@ -332,6 +332,30 @@ Các chỉ tiêu định lượng như độ trễ tối đa hoặc số ngườ
 
 Một chức năng được xem là đạt yêu cầu cơ bản khi: người dùng đúng vai trò có thể hoàn thành luồng chính; người dùng sai vai trò bị từ chối tại backend; dữ liệu không hợp lệ không làm thay đổi trạng thái hệ thống; thông báo lỗi đủ cụ thể để người dùng biết cần làm gì; và các tình huống quan trọng được kiểm thử tự động hoặc có kịch bản kiểm thử lặp lại.
 
+### 1.2.6. Minh họa giao diện các chức năng quản lý
+
+Các hình dưới đây minh họa những màn hình quản lý thành viên, hoạt động và điểm danh của frontend. Để tránh công khai dữ liệu cá nhân, thông tin hiển thị trong các ảnh sau đăng nhập là dữ liệu mẫu tổng hợp, không phải hồ sơ thật của sinh viên.
+
+![Màn hình quản lý thành viên](./ui_images/giao_dien_thanh_vien.png)
+
+*Hình 1.1. Giao diện quản lý và tra cứu danh sách thành viên.*
+
+![Màn hình quản lý hoạt động](./ui_images/giao_dien_hoat_dong.png)
+
+*Hình 1.2. Giao diện danh sách hoạt động, bộ lọc và thao tác quản trị.*
+
+![Màn hình điểm danh và duyệt minh chứng](./ui_images/giao_dien_diem_danh.png)
+
+*Hình 1.3. Giao diện theo dõi điểm danh và duyệt minh chứng tham gia.*
+
+### 1.2.7. Minh họa giao diện chức năng AI
+
+Màn hình dưới đây minh họa khu vực công cụ AI dành cho cán bộ CLB, gồm chức năng tạo bản nháp thông báo và yêu cầu tóm tắt hoạt động. Phần kết quả trong ảnh là nội dung minh họa được dựng để thể hiện bố cục giao diện; không được hiểu là kết quả từ một lần gọi AI hoặc là thông tin hoạt động đã được xác nhận.
+
+![Màn hình công cụ AI quản lý](./ui_images/giao_dien_tro_ly_ai.png)
+
+*Hình 1.4. Giao diện công cụ AI tạo bản nháp thông báo và hỗ trợ tóm tắt.*
+
 ## 1.3. Thiết kế kiến trúc tổng thể
 
 ### 1.3.1. Lựa chọn kiến trúc
@@ -549,6 +573,22 @@ export function ActivityList({ apiBaseUrl, accessToken }) {
 ```
 
 Trong sản phẩm thực tế, token cần được quản lý theo chính sách bảo mật phù hợp; không nên lưu thông tin xác thực nhạy cảm tùy tiện trong nơi lưu trữ phía trình duyệt. Giao diện cần xử lý trạng thái tải, lỗi và danh sách rỗng thay vì giả định API luôn trả dữ liệu thành công.
+
+### 1.3.6. Minh họa giao diện xác thực và trang tổng quan
+
+Hai hình đầu thể hiện giao diện đăng nhập và đăng ký tài khoản trong phiên bản frontend hiện có. Hình trang tổng quan sử dụng các con số và tên minh họa để trình bày cách bố trí thẻ thống kê; các giá trị này không đại diện cho dữ liệu đang được xác nhận từ cơ sở dữ liệu.
+
+![Màn hình đăng nhập CLB.Manager](./ui_images/giao_dien_dang_nhap.png)
+
+*Hình 1.5. Giao diện đăng nhập và các phương thức truy cập hệ thống.*
+
+![Màn hình đăng ký tài khoản](./ui_images/giao_dien_dang_ky.png)
+
+*Hình 1.6. Giao diện đăng ký tài khoản và nhập hồ sơ thành viên cơ bản.*
+
+![Trang tổng quan quản trị](./ui_images/giao_dien_tong_quan.png)
+
+*Hình 1.7. Trang tổng quan với các thẻ thống kê và khu vực thành viên tích cực; số liệu trong ảnh chỉ phục vụ minh họa.*
 
 ## 1.4. Thiết kế cơ sở dữ liệu
 
